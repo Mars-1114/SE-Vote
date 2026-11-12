@@ -9,7 +9,7 @@ COPY apps/react-app/ ./
 RUN npx vite build
 
 
-FROM maven:3.9-eclipse-temurin-17 AS backend-builder
+FROM maven:3.9-eclipse-temurin-25 AS backend-builder
 
 WORKDIR /build/backend
 
@@ -22,7 +22,7 @@ COPY --from=frontend-builder /build/frontend/dist ./src/main/resources/static
 RUN mvn --batch-mode --no-transfer-progress -DskipTests package
 
 
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:25-jre
 
 WORKDIR /app
 
